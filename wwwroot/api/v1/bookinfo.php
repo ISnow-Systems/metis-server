@@ -39,8 +39,8 @@ if (empty($_GET["isbn"])) {
 			echo "{}";
 			return;
 		}
-		$title = sprintf("%s", $bookInfoXml->channel->item[0]->title[0]);
-		$title_kana = sprintf("%s", $bookInfoXml->channel->item[0]->children("dcndl", true)->titleTranscription);
+		$title = trim(sprintf("%s", $bookInfoXml->channel->item[0]->title[0]));
+		$title_kana = trim(sprintf("%s", $bookInfoXml->channel->item[0]->children("dcndl", true)->titleTranscription));
 		$volume = $bookInfoXml->channel->item[0]->children("dcndl", true)->volume;
 		$iVolume = intval($volume);
 		$authorsSource = $bookInfoXml->channel->item[0]->author;
@@ -50,11 +50,11 @@ if (empty($_GET["isbn"])) {
 		$authorsTemp = "";
 		$publishersTemp = "";
 		foreach ($authorsArray as $item) {
-			$authorsTemp .= "\"" . $item . "\", ";
+			$authorsTemp .= "\"" . trim($item) . "\", ";
 		}
 		foreach ($publishersArray as $item) {
 			if (empty($item)) continue;
-			$publishersTemp .= "\"" . $item . "\", ";
+			$publishersTemp .= "\"" . trim($item) . "\", ";
 		}
 		$authors = substr($authorsTemp, 0, strlen($authorsTemp) - 2);
 		$publishers = substr($publishersTemp, 0, strlen($publishersTemp) - 2);
