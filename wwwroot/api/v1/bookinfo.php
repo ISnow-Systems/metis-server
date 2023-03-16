@@ -42,7 +42,7 @@ if (empty($_GET["isbn"])) {
 		$title_kana = $bookInfoXml->channel->item[0]->children("dcndl", true)->titleTranscription;
 		$volume = $bookInfoXml->channel->item[0]->children("dcndl", true)->volume;
 		$iVolume = intval($volume);
-		$authorsSource = $bookInfoXml->channel->item[0]->author;
+		$authorsSource = $bookInfoXml->channel->item[0]->children("dc", true)->creator;
 		$publishersSource = $bookInfoXml->channel->item[0]->children("dc", true)->publisher;
 		$authorsArray = array_filter(str_getcsv($authors), fn($val) => $val !== "");
 		$publishersArray = $publishersSource;
