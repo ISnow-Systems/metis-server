@@ -39,8 +39,8 @@ if (empty($_GET["isbn"])) {
 			echo "{}";
 			return;
 		}
-		$title = $bookInfoXml->channel->item[0]->title[0];
-		$title_kana = $bookInfoXml->channel->item[0]->children("dcndl", true)->titleTranscription[0];
+		$title = sprintf("%s", $bookInfoXml->channel->item[0]->title[0]);
+		$title_kana = sprintf("%s", $bookInfoXml->channel->item[0]->children("dcndl", true)->titleTranscription);
 		$volume = $bookInfoXml->channel->item[0]->children("dcndl", true)->volume;
 		$iVolume = intval($volume);
 		$authorsSource = $bookInfoXml->channel->item[0]->author;
