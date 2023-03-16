@@ -45,13 +45,14 @@ if (empty($_GET["isbn"])) {
 		$authorsSource = $bookInfoXml->channel->item[0]->author;
 		$publishersSource = $bookInfoXml->channel->item[0]->children("dc", true)->publisher;
 		$authorsArray = array_filter(str_getcsv($authors), fn($val) => $val !== "");
-		$publishersArray = array_filter($publishersSource, fn($val) => $val !== "");
+		$publishersArray = $publishersSource;
 		$authorsTemp = "";
 		$publishersTemp = "";
 		foreach ($authorsArray as $item) {
 			$authorsTemp .= "\"" . $item . "\", ";
 		}
 		foreach ($publishersArray as $item) {
+			if (empty($item)) continue;
 			$publishersTemp .= "\"" . $item . "\", ";
 		}
 		$authors = substr($authorsTemp, 0, strlen($authorsTemp) - 2);
