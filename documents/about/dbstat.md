@@ -1,0 +1,31 @@
+## 本の情報データベース
+
+- すべての本: <%=BOOKS%>
+  - 小説類: <%=NOVELS%>
+    - 一般小説: <%=NOVELS_GENERAL%>
+    - ライトノベル: <%=NOVELS_LIGHT%>
+    - 官能小説・ジュブナイルポルノ: <%=NOVELS_ADULT%>
+    - その他小説類: <%=NOVELS_OTHER%>
+  - 漫画類: <%=COMICS%>
+    - 少年向けコミック: <%=COMICS_%>
+    - 男性向けコミック: <%=COMICS_MAN%>
+    - 少年向けコミック: <%=COMICS_GIRLS%>
+    - 女性向けコミック: <%=COMICS_WOMAN%>
+    - Web系コミック: <%=COMICS_WEB%>
+    - 成人向けコミック: <%=COMICS_ADULT%>
+    - その他漫画類: <%=COMICS_OTHER%>
+  - 芸術・詩: <%=ARTS%>
+    - 美術: <%=ARTS_ART%>
+    - 音楽: <%=ARTS_MUSIC%>
+    - 制作: <%=ARTS_CREATION%>
+    - 俳句・川柳: <%=ARTS_HAIKU%>
+    - 短歌: <%=ARTS_TANKA%>
+    - 漢詩: <%=ARTS_CHINESE%>
+    - その他の詩: <%=ARTS_OTHER_POEM%>
+    - その他の芸術: <%=ARTS_OTHER_ART%>
+  - 技術書・参考書: <%=TECHNICAL%>
+    - 技術書・教科書: <%=TECHNICAL_TEXT%>
+    - 参考書: <%=TECHNICAL_REFERENCE%>
+    - 問題集: <%=TECHNICAL_PROBLEMS%>
+    - その他技術書: <%=TECHNICAL_OTHER>
+  - 未分類: <%=UNCATEGORIZED%>
