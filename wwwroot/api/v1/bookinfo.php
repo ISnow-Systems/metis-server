@@ -22,6 +22,7 @@ if (empty($_GET["isbn"])) {
 		echo "{\"error\": \"SQL Query Failed\"}";
 		return;
 	}
+	$preparedQuery->fetch();
 	if ($preparedQuery->num_rows != 1 && empty($title)) {
 		$preparedQuery->close();
 		$bookInfoRaw = file_get_contents(BASE_ADDRESS . $_GET["isbn"]);
@@ -56,7 +57,7 @@ if (empty($_GET["isbn"])) {
 			$publishersTemp .= "\"" . $item . "\", ";
 		}
 		$authors = substr($authorsTemp, 0, strlen($authorsTemp) - 2);
-		$publishers = substr($authorsTemp, 0, strlen($publishersTemp) - 2);
+		$publishers = substr($publishersTemp, 0, strlen($publishersTemp) - 2);
 		$insertQuery = $connection->prepare("INSERT INTO books (isbn, title, title_kana, volume, authors, publishers) VALUES (?, ?, ?, ?, ?, ?);");
 		$insertQuery->bind_param("sssiss", $_GET["isbn"], $title, $title_kana, $iVolume, $authors, $publishers);
 		$insertQuery->execute();
