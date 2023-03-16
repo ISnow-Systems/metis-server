@@ -19,17 +19,17 @@ if (empty($_GET["isbn"])) {
 	if (!$preparedQuery->execute()) {
 		http_response_code(500);
 		header("Content-Type: application/json");
-		echo "{}";
+		echo "{\"error\": \"SQL Query Failed\"}";
 		return;
 	}
 	if ($preparedQuery->num_rows != 1 && empty($title)) {
 		$preparedQuery->close();
 		$bookInfoRaw = file_get_contents(BASE_ADDRESS . $_GET["isbn"]);
 		$bookInfoXml = simplexml_load_string($bookInfoRaw);
-		if ($bookInfoXml == null) {
+		if ($bookInfoXml === false) {
 			http_response_code(500);
 			header("Content-Type: application/json");
-			echo "{}";
+			echo "{\"error\": \"XML Parse failed\"}";
 			return;
 		}
 		if (intval($bookInfoXml->rss->channel->children("openSearch", true)->totalResults, 10) == 0) {
