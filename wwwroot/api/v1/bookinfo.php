@@ -32,18 +32,18 @@ if (empty($_GET["isbn"])) {
 			echo "{}";
 			return;
 		}
-		if (intval($bookInfoXml->rss->channel->{"openSearch:totalResults"}, 10) == 0) {
+		if (intval($bookInfoXml->rss->channel->children("openSearch", true)->totalResults, 10) == 0) {
 			http_response_code(404);
 			header("Content-Type: application/json");
 			echo "{}";
 			return;
 		}
 		$title = $bookInfoXml->rss->channel->item[0]->title;
-		$title_kana = $bookInfoXml->rss->channel->item[0]->{"dcndl:titleTranscription"};
-		$volume = $bookInfoXml->rss->channel->item[0]->{"dcndl:volume"};
+		$title_kana = $bookInfoXml->rss->channel->item[0]->children("dcndl", true)->titleTranscription;
+		$volume = $bookInfoXml->rss->channel->item[0]->children("dcndl", true)->volume;
 		$iVolume = intval($volume);
 		$authorsSource = $bookInfoXml->rss->channel->item[0]->author;
-		$publishersSource = $bookInfoXml->rss->channel->item[0]->{"dc:publisher"};
+		$publishersSource = $bookInfoXml->rss->channel->item[0]->children("dc", true)->publisher;
 		$authorsArray = array_filter(str_getcsv($authors), fn($val) => $val !== "");
 		$publishersArray = array_filter($publishersSource, fn($val) => $val !== "");
 		$authorsTemp = "";
