@@ -1,6 +1,8 @@
 {
-	"hostname": "localhost",
-	"username": "metis",
-	"password": "",
-	"database": "metis"
+	"database": {
+		"hostname": "localhost",
+		"username": "metis",
+		"password": "",
+		"database": "metis"
+	}
 }
